@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAPPY NEW YEARS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ece9d5;
+      color: white;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .countdown-container {
+      text-align: center;
+      color: rgb(178, 12, 40);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .roll {
+      position: relative;
+      width: 100px;
+      height: 120px;
+      margin: 0 15px;
+      background-color: #ece9d5;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .roll span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 120px;
+      text-align: center;
+      font-size: 3rem;
+      line-height: 120px;
+      color: rgb(178, 12, 40);
+      opacity: 1;
+    }
+
+    .label {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: rgb(178, 12, 40);
+      display: inline-block;
+      width: 130px;
+    }
+
+    .message-link {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: rgb(178, 12, 40);
+    }
+
+    .new-year {
+      display: none;
+      text-align: center;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="countdown-container">
+    <h1>Countdown to New Year</h1>
+    <div id="countdown" class="countdown">
+      <div class="roll" id="days">
+        <span>00</span>
+      </div>
+      <div class="roll" id="hours">
+        <span>00</span>
+      </div>
+      <div class="roll" id="minutes">
+        <span>00</span>
+      </div>
+      <div class="roll" id="seconds">
+        <span>00</span>
+      </div>
+    </div>
+    <div>
+      <span class="label">Days</span>
+      <span class="label">Hours</span>
+      <span class="label">Minutes</span>
+      <span class="label">Seconds</span>
+    </div>
+  </div>
+
+  <div class="new-year">
+    <h1>Happy New Year!</h1>
+    <p>Wishing you a year full of joy and success!</p>
+  </div>
+
+  <div class="message-link">
+    <a href="message.html" style="color: rgb(178, 12, 40); text-decoration: none;">Click here to see the message!</a>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const newYear = new Date('January 1, 2025 00:00:00'); 
+      const timeDifference = newYear - now;
+
+      if (timeDifference <= 0) {
+        document.querySelector('.countdown-container').style.display = 'none';
+        document.querySelector('.new-year').style.display = 'block';
+        document.querySelector('.message-link').style.display = 'block'; // Show the link
+        return;
+      }
+
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      function formatTime(value) {
+        return value < 10 ? '0' + value : value;
+      }
+
+      document.getElementById('days').querySelector('span').textContent = formatTime(days);
+      document.getElementById('hours').querySelector('span').textContent = formatTime(hours);
+      document.getElementById('minutes').querySelector('span').textContent = formatTime(minutes);
+      document.getElementById('seconds').querySelector('span').textContent = formatTime(seconds);
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>

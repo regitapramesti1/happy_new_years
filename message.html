@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAPPY NEW YEAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #f983be; 
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 5rem;
+      text-align: center;
+      color: #fff; 
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    }
+
+    p {
+      font-size: 2rem;
+      text-align: center;
+      color: #fff;
+      font-weight: 500;
+      margin-top: 0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: yellow;
+      border-radius: 50%;
+      animation: explode 1.5s ease-out infinite;
+    }
+
+    .firework:nth-child(odd) {
+      background-color: red;
+      animation: explode 1.5s ease-out infinite;
+    }
+
+    .firework:nth-child(even) {
+      background-color: blue;
+      animation: explode 1.5s ease-out infinite;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+
+    .firework-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Happy New Year!</h1>
+  <p>Wishing you a year full of joy and success!</p>
+
+  <div class="firework-container"></div>
+
+  <script>
+    function createFirework() {
+      const firework = document.createElement('div');
+      firework.classList.add('firework');
+
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+
+      firework.style.left = `${x}px`;
+      firework.style.top = `${y}px`;
+
+      document.querySelector('.firework-container').appendChild(firework);
+
+      setTimeout(() => {
+        firework.remove();
+      }, 1500); 
+    }
+
+    setInterval(createFirework, 100);
+  </script>
+
+</body>
+</html>
